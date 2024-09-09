@@ -1,0 +1,92 @@
+<%- include("../includes/header.ejs") %>
+
+    <%- include("../includes/navbar.ejs") %>
+
+        <h1>Show Listings</h1>
+        <div class="container p-5">
+            <img src="<%= listing.image.url  %>" alt="" width="100%" height="400px">
+            <h2>
+                <%= listing.title %>
+            </h2>
+            <h4>
+                Rs <%= listing.price %>
+            </h4>
+            <p>
+                <b>description</b>
+                <%= listing.description %>
+            </p>
+            <p>
+                <b>Location </b>
+                <%= listing.location %>
+            </p>
+            <p>
+                <b>country</b>
+                <%= listing.country %>
+            </p>
+
+            <a href="http://localhost:3002/listings/edit/<%=listing._id %>" class="btn btn-warning">Edit</a>
+
+
+            <form action="/listings/delete/<%= listing._id %>?_method=DELETE" method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <hr>
+            <div>
+                <form action="/listing/<%= listing._id %>/review/create" method="post">
+                    <fieldset class="starability-basic">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked
+                            aria-label="No rating." />
+                        <input type="radio" id="second-rate1" name="rating" value="1" />
+                        <label for="second-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="second-rate2" name="rating" value="2" />
+                        <label for="second-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="second-rate3" name="rating" value="3" />
+                        <label for="second-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="second-rate4" name="rating" value="4" />
+                        <label for="second-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="second-rate5" name="rating" value="5" />
+                        <label for="second-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                    <textarea name="comment" placeholder="Write Comment" rows="5" cols="80"></textarea>
+                    <br>
+                    <button type="submit" class="btn btn-dark">submit</button>
+                </form>
+            </div>
+        </div>
+
+
+        <hr>
+        <div class="container">
+            <h1 class="text-center">Reviews</h1>
+
+            <div class="review-wrapper">
+                <% for(review of listing.reviews){ %>
+                    <div class="review-box">
+                        <h5>
+                            <%= review.user.username %>
+                        </h5>
+                        <p class="starability-result" data-rating="<%= review.rating %>">
+                            Rated: 3 stars
+                        </p>
+                        <p>
+                            <%= review.comment %>
+                        </p>
+                        <% if(currUser){ %>
+                            <% if(review.user.id===currUser.id){ %>
+                                <form
+                                    action="/listing/<%= listing._id %>/review/<%= review._id %>/delete?_method=DELETE"
+                                    method="post">
+                                    <button type="submit" class="btn btn-dark">delete</button>
+                                </form>
+                                <% } %>
+                                    <% } %>
+                                        <p>
+                                            <%= review.createdAt.toString().slice(0,23) %>
+                                        </p>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+
+
+        <%- include("../includes/footer.ejs") %>

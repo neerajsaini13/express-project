@@ -1,0 +1,32 @@
+<%- include("../includes/header.ejs") %>
+
+    <%- include("../includes/navbar.ejs") %>
+
+        <div class="container p-4">
+            <h1>EDIT LISTING</h1>
+            <hr>
+            <form action="/listings/edit/<%= lisitng._id %>?_method=PUT" method="post" enctype="multipart/form-data">
+                <input type="text" placeholder="Enter Title" class="form-control" name="title"
+                    value="<%= lisitng.title %>">
+                <br>
+                <textarea type="text" placeholder="Write a description" class="form-control"
+                    name="description"><%= lisitng.description %></textarea>
+                <br>
+                <!-- <input type="text" placeholder="IMAGE URL" class="form-control" name="url" value="<%= lisitng.url %>"> -->
+                <img src="<%= lisitng.image.url %>" alt="" width="40px">
+                <br><br>
+                <input type="file" name="image" class="form-control">
+                <br>
+                <input type="number" placeholder="Price" class="form-control" name="price" value="<%= lisitng.price %>">
+                <br>
+                <input type="text" placeholder="location" class="form-control" name="location"
+                    value="<%= lisitng.location %>">
+                <br>
+                <input type="text" placeholder="country" class="form-control" name="country"
+                    value="<%= lisitng.country %>">
+                <br>
+                <button type="submit" class="btn btn-warning w-50">EDIT</button>
+            </form>
+        </div>
+
+        <%- include("../includes/footer.ejs") %>

@@ -1,0 +1,28 @@
+<<%- include("../includes/header.ejs") %>
+
+    <%- include("../includes/navbar.ejs") %>
+
+
+        <div class="container p-4">
+            <h1>CREATE LISTING</h1>
+            <hr>
+            <form action="/listings/create" method="post" enctype="multipart/form-data">
+                <input type="text" placeholder="Enter Title" class="form-control" name="title" required>
+                <br>
+                <input type="text" placeholder="Write a description" class="form-control" name="description" required>
+                <br>
+                <!-- <input type="text" placeholder="IMAGE URL" class="form-control" name="url"> -->
+                <input type="file" name="image" class="form-control">
+                <br>
+                <input type="number" placeholder="Price" class="form-control" name="price" required>
+                <br>
+                <input type="text" placeholder="location" class="form-control" name="location" required>
+                <br>
+                <input type="text" placeholder="country" class="form-control" name="country" required>
+                <br>
+                <button type="submit" class="btn btn-success w-50">CREATE</button>
+            </form>
+        </div>
+
+
+        <%- include("../includes/footer.ejs") %>

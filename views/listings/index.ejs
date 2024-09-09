@@ -1,0 +1,30 @@
+<%- include("../includes/header.ejs") %>
+
+    <%- include("../includes/navbar.ejs") %>
+
+        <div class="container pt-3">
+            <h1>All Listings</h1>
+            <hr>
+            <div class="card-wrapper d-flex flex-wrap gap-5">
+                <% for (listing of allListing){ %>
+                    <a href="http://localhost:3002/listings/show/<%= listing._id  %>">
+                        <div class="card" style="width: 18rem;">
+                            <img src="<%= listing.image.url %>" class="card-img-top" alt="..." height="200px">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= listing.title %>
+                                </h5>
+                                <p class="card-text">
+                                    <%= listing.description %>
+                                </p>
+                            </div>
+
+                        </div>
+                    </a>
+                    <% } %>
+
+            </div>
+        </div>
+
+
+        <%- include("../includes/footer.ejs") %>

@@ -1,0 +1,26 @@
+<<%- include("../includes/header.ejs") %>
+
+    <%- include("../includes/navbar.ejs") %>
+
+
+
+        <div class="container mt-5">
+            <h1>login page</h1>
+            <hr>
+            <form action="/user/login" method="post">
+                <div class="mb-3">
+                    <label>User Name</label>
+                    <input type="text" placeholder="Enter Your Name" class="form-control" name="username">
+                </div>
+                <div class="mb-3">
+                    <label>User Password</label>
+                    <input type="password" placeholder="Enter Your Password" class="form-control" name="password">
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-success">Login</button>
+                </div>
+            </form>
+        </div>
+
+
+        <<%- include("../includes/footer.ejs") %>
